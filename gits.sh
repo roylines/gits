@@ -45,4 +45,6 @@ else
 fi
 
 echo "commit: $GIT_COMMITTER_NAME, author: $GIT_AUTHOR_NAME"
-git $@
+echo ""
+
+git "$@"
