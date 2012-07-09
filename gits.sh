@@ -21,21 +21,27 @@ then
     exit 0
 fi
 
+if [ -f $HOME/.gitconfig ];
+then
+    echo "You cannot have a ~/.gitconfig and use gits. Remove and try again."
+    exit 1
+fi
+
 r=$RANDOM
 n=$(( r %= 2 ))
 
 filecontent=( `cat "$config" `)
 if [ $n -eq 1 ]
 then
-    GIT_COMMITTER_NAME=${filecontent[0]}
-    GIT_COMMITTER_EMAIL=${filecontent[1]}
-    GIT_AUTHOR_NAME=${filecontent[2]}
-    GIT_AUTHOR_EMAIL=${filecontent[3]}
+    export GIT_COMMITTER_NAME=${filecontent[0]}
+    export GIT_COMMITTER_EMAIL=${filecontent[1]}
+    export GIT_AUTHOR_NAME=${filecontent[2]}
+    export GIT_AUTHOR_EMAIL=${filecontent[3]}
 else
-    GIT_COMMITTER_NAME=${filecontent[2]}
-    GIT_COMMITTER_EMAIL=${filecontent[3]}
-    GIT_AUTHOR_NAME=${filecontent[0]}
-    GIT_AUTHOR_EMAIL=${filecontent[1]}
+    export GIT_COMMITTER_NAME=${filecontent[2]}
+    export GIT_COMMITTER_EMAIL=${filecontent[3]}
+    export GIT_AUTHOR_NAME=${filecontent[0]}
+    export GIT_AUTHOR_EMAIL=${filecontent[1]}
 fi
 
 echo "commit: $GIT_COMMITTER_NAME, author: $GIT_AUTHOR_NAME"
