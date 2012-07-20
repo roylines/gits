@@ -30,6 +30,18 @@ fi
 r=$RANDOM
 n=$(( r %= 2 ))
 
+if [ $1 = "1" ];
+then
+    echo 'forcing author to first user'
+    shift
+fi
+
+if [ $1 = "2" ];
+then
+    echo 'forcing author to second user'
+    shift
+fi
+
 filecontent=( `cat "$config" `)
 if [ $n -eq 1 ]
 then
@@ -44,7 +56,6 @@ else
     export GIT_AUTHOR_EMAIL=${filecontent[1]}
 fi
 
-echo "commit: $GIT_COMMITTER_NAME, author: $GIT_AUTHOR_NAME"
-echo ""
-
 git "$@"
+
+echo "commit: $GIT_COMMITTER_NAME, author: $GIT_AUTHOR_NAME"
