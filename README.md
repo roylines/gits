@@ -15,6 +15,12 @@ The first time you use gits it will prompt for git usernames and emails for the 
 
 Although you only need to use gits when committing to repositories, you can use it instead of git for all operations if you prefer.
 
+## Forcing a user for a particular commit
+If you want to take the random element out of a commit you can force the author for a commit by passing a 1 or 2 as the first argument to gits, e.g.
+	
+	gits 1 commit -m 'forcing the commit to the first user in the .gits file'
+	gits 2 commit -m 'forcing the commit to the second user in the .gits file'
+
 ## Installation
 ### Manual Installation
 	$ sudo wget https://raw.github.com/roylines/gits/master/gits.sh -O /usr/local/bin/gits
