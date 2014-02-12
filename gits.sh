@@ -21,12 +21,6 @@ then
     exit 0
 fi
 
-if [ -f $HOME/.gitconfig ];
-then
-    echo "You cannot have a ~/.gitconfig and use gits. Remove and try again."
-    exit 1
-fi
-
 r=$RANDOM
 n=$(( r %= 2 ))
 
