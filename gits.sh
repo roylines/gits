@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+# set -e
 config="$HOME/.gits"
 
 if [ ! -f $config ];
@@ -28,14 +28,14 @@ n=$(( r %= 2 ))
 
 if [ $1 = "1" ];
 then
-    echo 'forcing author to first user'
+    echo ' >>>> forcing author to first user'
     shift
     n=1
 fi
 
 if [ $1 = "2" ];
 then
-    echo 'forcing author to second user'
+    echo ' >>>> forcing author to second user'
     shift
     n=2
 fi
@@ -59,7 +59,27 @@ fi
 
 IFS=$old_IFS 
 
-git "$@"
+if [ "$1" = "commit" ]
+then
+    SIGNED=( `git config user.signingkey` )
+    if [ -z "$SIGNED" ] 
+    then
+        echo " >>>> Your commit will not be signed, no signing key!"
+        SIGNED_COMMAND=''
+    else
+        if [ $n -eq 1 ]
+        then
+          echo " >>>> Your commit will be signed!"
+          SIGNED_COMMAND='-S'
+        else
+          echo " >>>> Your commit will not be signed, only signing the first author!"
+          SIGNED_COMMAND=''
+        fi
+    fi
+    git "$@" $SIGNED_COMMAND
+else
+    git "$@"
+fi
 
-echo "commit name: $GIT_COMMITTER_NAME, email: $GIT_COMMITTER_EMAIL"
-echo "author name: $GIT_AUTHOR_NAME, email: $GIT_AUTHOR_EMAIL"
+echo " >>>> commit name: $GIT_COMMITTER_NAME, email: $GIT_COMMITTER_EMAIL"
+echo " >>>> author name: $GIT_AUTHOR_NAME, email: $GIT_AUTHOR_EMAIL"
