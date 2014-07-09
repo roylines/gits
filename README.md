@@ -11,7 +11,7 @@ To find all options use:
 
 	gits --help
 
-The first time you use gits it will prompt for git usernames and emails for the pair of developers. This is stored in ~/.gits and this file can safely removed to reset pairing.
+The first time you use gits it will prompt for git usernames (spaces are allowed) and emails for the pair of developers. This is stored in ~/.gits and this file can safely removed to reset pairing.
 
 Although you only need to use gits when committing to repositories, you can use it instead of git for all operations if you prefer.
 
@@ -23,6 +23,6 @@ If you want to take the random element out of a commit you can force the author 
 
 ## Installation
 ### Manual Installation
-	$ sudo wget https://raw.github.com/roylines/gits/master/gits.sh -O /usr/local/bin/gits
-	$ sudo chmod ugo+x /usr/local/bin/gits
+	$ wget https://raw.github.com/roylines/gits/master/gits.sh -O /usr/local/bin/gits
+	$ chmod ugo+x /usr/local/bin/gits
 	$ gits
