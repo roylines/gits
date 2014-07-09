@@ -21,6 +21,9 @@ If you want to take the random element out of a commit you can force the author 
 	gits 1 commit -m 'forcing the commit to the first user in the .gits file'
 	gits 2 commit -m 'forcing the commit to the second user in the .gits file'
 
+## Signing key
+When git config user.signingkey is set, gits will automatically try to commit with -S when the first user is the author. 
+
 ## Installation
 ### Manual Installation
 	$ wget https://raw.github.com/roylines/gits/master/gits.sh -O /usr/local/bin/gits
