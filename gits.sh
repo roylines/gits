@@ -24,20 +24,20 @@ fi
 r=$RANDOM
 n=$(( r %= 2 ))
 
-if [ $1 = "1" ];
+if [ "$1" = "1" ];
 then
     echo 'forcing author to first user'
     shift
 fi
 
-if [ $1 = "2" ];
+if [ "$1" = "2" ];
 then
     echo 'forcing author to second user'
     shift
 fi
 
 filecontent=( `cat "$config" `)
-if [ $n -eq 1 ]
+if [ "$n" -eq 1 ]
 then
     export GIT_COMMITTER_NAME=${filecontent[0]}
     export GIT_COMMITTER_EMAIL=${filecontent[1]}
